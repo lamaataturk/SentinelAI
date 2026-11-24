@@ -3,14 +3,16 @@ from pathlib import Path
 import re
 
 from sentinelai.contracts.messages import validate_message
-
+from sentinelai.reporting.traceability import EvidenceValidator
 
 class ReportingAgent:
 
-    def __init__(self, output_dir="reports"):
+    def __init__(self, output_dir="reports", flow_ids=None):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.reports = {}
+        self.validator = EvidenceValidator()
+        self.flow_ids = flow_ids
 
     def run(self, message, memory):
 
@@ -22,7 +24,17 @@ class ReportingAgent:
 
         if message["format"] != "markdown":
             raise ValueError("Only Markdown is currently supported")
+        
+        validation = self.validator.validate(
+            memory, self.flow_ids
+        )
 
+        if not validation["valid"]:
+            raise ValueError(
+                "Evidence validation failed: "
+                + "; ".join(validation["errors"])
+            )
+        
         incident_id = message["incident_id"]
         assessment_id = message["assessment_id"]
 
@@ -67,7 +79,20 @@ class ReportingAgent:
             missing_alerts,
             message["message_id"],
         )
+        report += "\n## 11. Evidence Validation\n\n"
+        report += "- Stored-message validation: Passed\n"
 
+        if validation["flow_references_checked"]:
+            report += "- Flow reference validation: Passed\n"
+        else:
+            report += "- Flow reference validation: Not performed\n"
+
+        report += "- Detection rule definitions: Not verified\n"
+        report += (
+            "- Reference validation does not confirm "
+            "the correctness of cybersecurity interpretations.\n"
+        )
+    
         request_id = message["message_id"]
 
         if not re.fullmatch(r"[A-Za-z0-9_-]+", request_id):
