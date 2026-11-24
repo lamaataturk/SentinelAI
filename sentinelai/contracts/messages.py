@@ -97,16 +97,27 @@ def _require(msg, keys, errors, where):
 
 # ---------------------------------------------------------------- per type
 def _validate_alert(m, e, w):
-    _require(m, ("network", "detector", "first_seen", "last_seen", "src_ip", "dst_ip",
+    _require(m, ("network", "detector", "first_seen", "last_seen", "host_ip", "src_ip", "dst_ip",
                  "src_port", "dst_port", "protocol", "rf_score", "rule_hits", "ids_source",
                  "signature", "user", "hostname", "summary"), e, w)
     if e:
         return
     if m["detector"] not in DETECTORS:
         e.append(f"{w}: detector must be one of {sorted(DETECTORS)}")
-    for k in ("src_ip", "dst_ip"):
-        if not _is_ip(m[k]):
-            e.append(f"{w}: {k} is not a valid IP (IPs are required, never dropped)")
+    # IPs are never dropped. Detection Agent alerts always come from a flow, so
+    # src_ip and dst_ip are required. IDS alerts (AIT-ADS) keep every IP the
+    # source record has; when it has no src/dst (e.g. the CSV export), the IP
+    # of the host that raised the alert (host_ip) is required instead.
+    for k in ("src_ip", "dst_ip", "host_ip"):
+        if m[k] is not None and not _is_ip(m[k]):
+            e.append(f"{w}: {k} is not a valid IP")
+    if m["detector"] == "ids":
+        if m["host_ip"] is None and (m["src_ip"] is None or m["dst_ip"] is None):
+            e.append(f"{w}: ids alerts need host_ip, or both src_ip and dst_ip")
+    else:
+        for k in ("src_ip", "dst_ip"):
+            if m[k] is None:
+                e.append(f"{w}: {k} is required (IPs are never dropped)")
     for k in ("first_seen", "last_seen"):
         if not _is_utc(m[k]):
             e.append(f"{w}: {k} must be ISO 8601 UTC ending in Z")

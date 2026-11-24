@@ -24,9 +24,11 @@ Orchestrator / analyst (Lama) --ReportRequest-----> shared memory --> Reporting 
 
 ## Alert (Detection Agent; `ait_ids_loader` for AIT-ADS alerts)
 
-`network`, `detector` (rf / rules / hybrid / ids), `first_seen`, `last_seen`, **`src_ip`, `dst_ip` (required)**, `src_port`, `dst_port`, `protocol`, `rf_score` (0–1 or null), `rule_hits` (list), `ids_source` (wazuh / suricata / aminer, for ids only), `signature`, `user`, `hostname`, `summary`.
+`network`, `detector` (rf / rules / hybrid / ids), `first_seen`, `last_seen`, `host_ip`, **`src_ip`, `dst_ip`**, `src_port`, `dst_port`, `protocol`, `rf_score` (0–1 or null), `rule_hits` (list), `ids_source` (wazuh / suricata / aminer, for ids only), `signature`, `user`, `hostname`, `summary`.
 
-Rules: rf and hybrid alerts need a score; rules and hybrid alerts need a rule hit; every alert cites at least one flow, raw log or rule.
+IP rule (v1.0, amended 23 Nov): Detection Agent alerts always need `src_ip` and `dst_ip`. IDS alerts from AIT-ADS keep every IP their source record has; the authors' CSV export has only the IP of the host that raised the alert, so for those `host_ip` is required and `src_ip`/`dst_ip` may be null. No IP present in the input is ever dropped.
+
+Other rules: rf and hybrid alerts need a score; rules and hybrid alerts need a rule hit; every alert cites at least one flow, raw log or rule.
 
 ## IncidentUpdate (Investigation Agent)
 

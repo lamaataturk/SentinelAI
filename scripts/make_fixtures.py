@@ -93,8 +93,8 @@ def alert(n, minute, flows, src, dst, sport, dport, proto, detector, score, rule
             "network": NET, "detector": detector,
             "first_seen": ts(first if first is not None else minute),
             "last_seen": ts(last if last is not None else minute),
-            "src_ip": src, "dst_ip": dst, "src_port": sport, "dst_port": dport, "protocol": proto,
-            "rf_score": score, "rule_hits": rules, "ids_source": ids_source, "signature": signature,
+            "host_ip": None, "src_ip": src, "dst_ip": dst, "src_port": sport, "dst_port": dport,
+            "protocol": proto, "rf_score": score, "rule_hits": rules, "ids_source": ids_source, "signature": signature,
             "user": None, "hostname": hostname, "summary": summary}
 
 
