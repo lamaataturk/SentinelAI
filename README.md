@@ -40,3 +40,34 @@ sentinelai/response/      Omar    (severity policy, recommendations)
 sentinelai/reporting/     Lama    (Reporting Agent)
 sentinelai/platform/      Lama    (shared memory, orchestrator, API, dashboard)
 ```
+## Shared Memory
+
+SentinelAI uses SQLite as shared memory for communication between agents.
+
+The implementation is located in `sentinelai/platform/shared_memory.py`.
+
+All messages must follow the existing message contract.
+
+### Available Methods
+
+| Method | Description |
+|---|---|
+| `SharedMemory(db_path)` | Initialize the shared database. |
+| `write(message)` | Validate and store a message. |
+| `read()` | Retrieve all stored messages. |
+| `read(message_type)` | Retrieve messages of a specific type. |
+| `get(message_id)` | Retrieve a message by its unique ID. |
+| `latest_incident(incident_id)` | Retrieve the latest incident update. |
+
+### Supported Message Types
+
+- Alert
+- IncidentUpdate
+- Assessment
+- ReportRequest
+
+All agents must use the same database path during a system run. Messages that violate the contract or contain duplicate message IDs are rejected.
+
+### Testing
+
+Run `python -m pytest -v` to verify the message contracts and shared memory implementation.
