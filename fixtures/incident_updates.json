@@ -1,0 +1,404 @@
+[
+  {
+    "message_id": "incupd-0001",
+    "message_type": "IncidentUpdate",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:19:00Z",
+    "producer": "investigation_agent",
+    "evidence_refs": [
+      "alert:alert-0001",
+      "alert:alert-0002",
+      "alert:alert-0003",
+      "alert:alert-0004"
+    ],
+    "incident_id": "inc-0001",
+    "version": 1,
+    "status": "open",
+    "network": "fixture-net",
+    "alert_ids": [
+      "alert-0001",
+      "alert-0002",
+      "alert-0003",
+      "alert-0004"
+    ],
+    "entities": {
+      "ips": [
+        "203.0.113.66",
+        "10.0.1.20",
+        "10.0.1.25"
+      ],
+      "hosts": [
+        "wordpress",
+        "mail"
+      ],
+      "users": []
+    },
+    "start_time": "2026-01-10T08:00:00Z",
+    "end_time": "2026-01-10T08:18:00Z",
+    "link_reasons": [
+      {
+        "alert_id": "alert-0002",
+        "linked_to": "alert-0001",
+        "shared_entity": "ip:203.0.113.66",
+        "gap_seconds": 120,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0003",
+        "linked_to": "alert-0001",
+        "shared_entity": "ip:203.0.113.66",
+        "gap_seconds": 600,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0004",
+        "linked_to": "alert-0003",
+        "shared_entity": "ip:203.0.113.66",
+        "gap_seconds": 480,
+        "strength": "strong"
+      }
+    ],
+    "candidate_techniques": [
+      {
+        "technique_id": "T1595",
+        "name": "Active Scanning",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0001",
+          "alert:alert-0002",
+          "alert:alert-0003"
+        ]
+      },
+      {
+        "technique_id": "T1190",
+        "name": "Exploit Public-Facing Application",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0004"
+        ]
+      }
+    ],
+    "stage_hypotheses": [
+      {
+        "stage": "reconnaissance",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0001",
+          "alert:alert-0002",
+          "alert:alert-0003"
+        ]
+      },
+      {
+        "stage": "exploitation",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0004"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "uncertainty_notes": "Exploit is inferred from traffic shape only; no host log confirms it yet."
+  },
+  {
+    "message_id": "incupd-0002",
+    "message_type": "IncidentUpdate",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:46:00Z",
+    "producer": "investigation_agent",
+    "evidence_refs": [
+      "alert:alert-0001",
+      "alert:alert-0002",
+      "alert:alert-0003",
+      "alert:alert-0004",
+      "alert:alert-0005",
+      "alert:alert-0006",
+      "alert:alert-0007",
+      "alert:alert-0008"
+    ],
+    "incident_id": "inc-0001",
+    "version": 2,
+    "status": "open",
+    "network": "fixture-net",
+    "alert_ids": [
+      "alert-0001",
+      "alert-0002",
+      "alert-0003",
+      "alert-0004",
+      "alert-0005",
+      "alert-0006",
+      "alert-0007",
+      "alert-0008"
+    ],
+    "entities": {
+      "ips": [
+        "203.0.113.66",
+        "10.0.1.20",
+        "10.0.1.25",
+        "10.0.1.53"
+      ],
+      "hosts": [
+        "wordpress",
+        "mail"
+      ],
+      "users": []
+    },
+    "start_time": "2026-01-10T08:00:00Z",
+    "end_time": "2026-01-10T08:45:00Z",
+    "link_reasons": [
+      {
+        "alert_id": "alert-0002",
+        "linked_to": "alert-0001",
+        "shared_entity": "ip:203.0.113.66",
+        "gap_seconds": 120,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0003",
+        "linked_to": "alert-0001",
+        "shared_entity": "ip:203.0.113.66",
+        "gap_seconds": 600,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0004",
+        "linked_to": "alert-0003",
+        "shared_entity": "ip:203.0.113.66",
+        "gap_seconds": 480,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0005",
+        "linked_to": "alert-0004",
+        "shared_entity": "ip:10.0.1.20",
+        "gap_seconds": 120,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0006",
+        "linked_to": "alert-0005",
+        "shared_entity": "ip:10.0.1.20",
+        "gap_seconds": 300,
+        "strength": "strong"
+      },
+      {
+        "alert_id": "alert-0007",
+        "linked_to": "alert-0006",
+        "shared_entity": "ip:10.0.1.20",
+        "gap_seconds": 900,
+        "strength": "weak"
+      },
+      {
+        "alert_id": "alert-0008",
+        "linked_to": "alert-0007",
+        "shared_entity": "ip:10.0.1.20",
+        "gap_seconds": 300,
+        "strength": "strong"
+      }
+    ],
+    "candidate_techniques": [
+      {
+        "technique_id": "T1595",
+        "name": "Active Scanning",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0001",
+          "alert:alert-0002",
+          "alert:alert-0003"
+        ]
+      },
+      {
+        "technique_id": "T1190",
+        "name": "Exploit Public-Facing Application",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0003",
+          "alert:alert-0004"
+        ]
+      },
+      {
+        "technique_id": "T1505.003",
+        "name": "Server Software Component: Web Shell",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0005"
+        ]
+      },
+      {
+        "technique_id": "T1059",
+        "name": "Command and Scripting Interpreter",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0006"
+        ]
+      },
+      {
+        "technique_id": "T1048",
+        "name": "Exfiltration Over Alternative Protocol",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0007",
+          "alert:alert-0008"
+        ]
+      }
+    ],
+    "stage_hypotheses": [
+      {
+        "stage": "reconnaissance",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0001",
+          "alert:alert-0002",
+          "alert:alert-0003"
+        ]
+      },
+      {
+        "stage": "exploitation",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0004"
+        ]
+      },
+      {
+        "stage": "installation",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0005"
+        ]
+      },
+      {
+        "stage": "command_and_control",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0006"
+        ]
+      },
+      {
+        "stage": "actions_on_objectives",
+        "support": "strong",
+        "evidence_refs": [
+          "alert:alert-0007",
+          "alert:alert-0008"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "uncertainty_notes": "Link 6->7 is weak: a 15-minute gap and a new destination (DNS server). Web shell and command steps are not confirmed by host logs."
+  },
+  {
+    "message_id": "incupd-0003",
+    "message_type": "IncidentUpdate",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:06:00Z",
+    "producer": "investigation_agent",
+    "evidence_refs": [
+      "alert:alert-0009"
+    ],
+    "incident_id": "inc-0002",
+    "version": 1,
+    "status": "open",
+    "network": "fixture-net",
+    "alert_ids": [
+      "alert-0009"
+    ],
+    "entities": {
+      "ips": [
+        "10.0.1.5",
+        "10.0.1.20"
+      ],
+      "hosts": [
+        "monitoring"
+      ],
+      "users": []
+    },
+    "start_time": "2026-01-10T08:05:00Z",
+    "end_time": "2026-01-10T08:05:00Z",
+    "link_reasons": [],
+    "candidate_techniques": [
+      {
+        "technique_id": "T1595",
+        "name": "Active Scanning",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0009"
+        ]
+      }
+    ],
+    "stage_hypotheses": [
+      {
+        "stage": "reconnaissance",
+        "support": "weak",
+        "evidence_refs": [
+          "alert:alert-0009"
+        ]
+      }
+    ],
+    "confidence": "low",
+    "uncertainty_notes": "Source is the monitoring server; this is most likely its scheduled scan."
+  },
+  {
+    "message_id": "incupd-0004",
+    "message_type": "IncidentUpdate",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:34:00Z",
+    "producer": "investigation_agent",
+    "evidence_refs": [
+      "alert:alert-0010"
+    ],
+    "incident_id": "inc-0003",
+    "version": 1,
+    "status": "open",
+    "network": "fixture-net",
+    "alert_ids": [
+      "alert-0010"
+    ],
+    "entities": {
+      "ips": [
+        "10.0.2.15",
+        "198.51.100.200"
+      ],
+      "hosts": [],
+      "users": []
+    },
+    "start_time": "2026-01-10T08:30:00Z",
+    "end_time": "2026-01-10T08:33:30Z",
+    "link_reasons": [],
+    "candidate_techniques": [],
+    "stage_hypotheses": [],
+    "confidence": "low",
+    "uncertainty_notes": "Single alert, no shared entity with other alerts; looks like a software update."
+  },
+  {
+    "message_id": "incupd-0005",
+    "message_type": "IncidentUpdate",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T09:46:00Z",
+    "producer": "investigation_agent",
+    "evidence_refs": [
+      "alert:alert-0011"
+    ],
+    "incident_id": "inc-0004",
+    "version": 1,
+    "status": "open",
+    "network": "fixture-net",
+    "alert_ids": [
+      "alert-0011"
+    ],
+    "entities": {
+      "ips": [
+        "10.0.1.30",
+        "10.0.1.40"
+      ],
+      "hosts": [
+        "backup"
+      ],
+      "users": []
+    },
+    "start_time": "2026-01-10T09:30:00Z",
+    "end_time": "2026-01-10T09:45:00Z",
+    "link_reasons": [],
+    "candidate_techniques": [],
+    "stage_hypotheses": [],
+    "confidence": "low",
+    "uncertainty_notes": "Single alert between two internal hosts at backup time; likely the nightly backup."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "message_id": "repreq-0001",
+    "message_type": "ReportRequest",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:47:30Z",
+    "producer": "orchestrator",
+    "evidence_refs": [
+      "incident:inc-0001",
+      "assessment:assess-0001"
+    ],
+    "incident_id": "inc-0001",
+    "assessment_id": "assess-0001",
+    "requested_by_reason": "New High assessment",
+    "format": "markdown"
+  },
+  {
+    "message_id": "repreq-0002",
+    "message_type": "ReportRequest",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:08:00Z",
+    "producer": "analyst",
+    "evidence_refs": [
+      "incident:inc-0002",
+      "assessment:assess-0002"
+    ],
+    "incident_id": "inc-0002",
+    "assessment_id": "assess-0002",
+    "requested_by_reason": "Analyst asked for a report",
+    "format": "markdown"
+  }
+]

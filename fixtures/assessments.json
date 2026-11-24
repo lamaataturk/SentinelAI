@@ -1,0 +1,114 @@
+[
+  {
+    "message_id": "assess-0001",
+    "message_type": "Assessment",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:47:00Z",
+    "producer": "response_agent",
+    "evidence_refs": [
+      "incident:inc-0001"
+    ],
+    "incident_id": "inc-0001",
+    "incident_version": 2,
+    "severity": "High",
+    "policy_rule_id": "SEV-MULTISTAGE-OBJECTIVE",
+    "severity_reasons": [
+      "Five linked stages from reconnaissance to actions on objectives",
+      "Strong evidence of possible data theft over DNS (alerts 7 and 8)",
+      "Target is the public WordPress server"
+    ],
+    "recommendations": [
+      {
+        "action": "Check the WordPress server for unknown or recently uploaded files",
+        "reason": "Possible web shell upload (alert-0005)",
+        "technique_id": "T1505.003",
+        "requires_human_approval": true
+      },
+      {
+        "action": "Preserve web server and DNS logs for the incident window",
+        "reason": "Needed to confirm or rule out the attack",
+        "technique_id": null,
+        "requires_human_approval": true
+      },
+      {
+        "action": "Review outgoing DNS traffic from 10.0.1.20",
+        "reason": "Possible exfiltration over DNS (alerts 7 and 8)",
+        "technique_id": "T1048",
+        "requires_human_approval": true
+      },
+      {
+        "action": "Consider blocking 203.0.113.66 at the firewall",
+        "reason": "Same outside address in every early step",
+        "technique_id": "T1595",
+        "requires_human_approval": true
+      }
+    ],
+    "review_status": "pending"
+  },
+  {
+    "message_id": "assess-0002",
+    "message_type": "Assessment",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:07:00Z",
+    "producer": "response_agent",
+    "evidence_refs": [
+      "incident:inc-0002"
+    ],
+    "incident_id": "inc-0002",
+    "incident_version": 1,
+    "severity": "Low",
+    "policy_rule_id": "SEV-SINGLE-WEAK",
+    "severity_reasons": [
+      "One alert with weak support",
+      "Source is a known monitoring host"
+    ],
+    "recommendations": [
+      {
+        "action": "Confirm the scan matches the monitoring schedule",
+        "reason": "Innocent explanation is likely",
+        "technique_id": null,
+        "requires_human_approval": true
+      }
+    ],
+    "review_status": "pending"
+  },
+  {
+    "message_id": "assess-0003",
+    "message_type": "Assessment",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T08:35:00Z",
+    "producer": "response_agent",
+    "evidence_refs": [
+      "incident:inc-0003"
+    ],
+    "incident_id": "inc-0003",
+    "incident_version": 1,
+    "severity": "Low",
+    "policy_rule_id": "SEV-SINGLE-UNMAPPED",
+    "severity_reasons": [
+      "One alert, no technique mapped"
+    ],
+    "recommendations": [],
+    "review_status": "pending"
+  },
+  {
+    "message_id": "assess-0004",
+    "message_type": "Assessment",
+    "schema_version": "1.0",
+    "created_at": "2026-01-10T09:47:00Z",
+    "producer": "response_agent",
+    "evidence_refs": [
+      "incident:inc-0004"
+    ],
+    "incident_id": "inc-0004",
+    "incident_version": 1,
+    "severity": "Low",
+    "policy_rule_id": "SEV-SINGLE-UNMAPPED",
+    "severity_reasons": [
+      "One alert, no technique mapped",
+      "Matches the backup window"
+    ],
+    "recommendations": [],
+    "review_status": "pending"
+  }
+]
