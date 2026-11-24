@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import csv
 
 from sentinelai.platform.shared_memory import SharedMemory
 from sentinelai.reporting.reporting_agent import ReportingAgent
@@ -34,8 +35,19 @@ def main():
             for message in messages:
                 memory.write(message)
 
-        agent = ReportingAgent(ROOT / "reports")
+        with (FIXTURES / "features_sample.csv").open(
+            encoding="utf-8", newline=""
+        ) as file:
+            flow_ids = {
+                row["flow_id"]
+                for row in csv.DictReader(file)
+            }
 
+        agent = ReportingAgent(
+            ROOT / "reports",
+            flow_ids=flow_ids,
+        )
+        
         generated = 0
 
         for request in memory.read("ReportRequest"):

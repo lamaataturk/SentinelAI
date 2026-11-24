@@ -185,3 +185,48 @@ def test_orchestrator_reporting_integration(setup_reporting):
 
     assert results["reports_processed"] == 1
     assert agent.reports[request["message_id"]].exists()
+    
+def test_report_contains_validation_status(setup_reporting):
+    memory, agent, request = setup_reporting
+
+    report = agent.run(request, memory).read_text(
+        encoding="utf-8"
+    )
+
+    assert "Evidence Validation" in report
+    assert "Stored-message validation: Passed" in report
+    assert "Flow reference validation: Not performed" in report
+
+
+def test_report_rejects_invalid_evidence(setup_reporting):
+    memory, agent, request = setup_reporting
+
+    agent.flow_ids = set()
+
+    with pytest.raises(
+        ValueError,
+        match="Evidence validation failed"
+    ):
+        agent.run(request, memory)
+
+    assert not list(agent.output_dir.glob("*.md"))
+
+
+def test_report_with_verified_flows(setup_reporting):
+    import csv
+
+    memory, agent, request = setup_reporting
+
+    with (FIX / "features_sample.csv").open(
+        encoding="utf-8", newline=""
+    ) as file:
+        agent.flow_ids = {
+            row["flow_id"]
+            for row in csv.DictReader(file)
+        }
+
+    report = agent.run(request, memory).read_text(
+        encoding="utf-8"
+    )
+
+    assert "Flow reference validation: Passed" in report
