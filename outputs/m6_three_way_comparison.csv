@@ -1,0 +1,4 @@
+approach,precision,recall,f1,false_positive_rate,accuracy,tn,fp,fn,tp
+Rules-only,1.0,0.5,0.6666666666666666,0.0,0.8571428571428571,5,0,1,1
+RF-only,1.0,1.0,1.0,0.0,1.0,5,0,0,2
+Hybrid (RF OR rules),1.0,1.0,1.0,0.0,1.0,5,0,0,2

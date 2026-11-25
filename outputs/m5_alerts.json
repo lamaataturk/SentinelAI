@@ -1,0 +1,57 @@
+[
+  {
+    "message_id": "alert-b0dcce5daf09",
+    "message_type": "Alert",
+    "schema_version": "1.0",
+    "created_at": "2026-11-24T23:28:57Z",
+    "producer": "detection_agent",
+    "evidence_refs": [
+      "flow:f-000025"
+    ],
+    "network": "fixture-net",
+    "detector": "rf",
+    "first_seen": "2026-01-10T08:18:00.000Z",
+    "last_seen": "2026-01-10T08:18:01.000Z",
+    "src_ip": "203.0.113.66",
+    "dst_ip": "10.0.1.20",
+    "src_port": 44618,
+    "dst_port": 80,
+    "protocol": 6,
+    "rf_score": 0.952,
+    "rule_hits": [],
+    "ids_source": null,
+    "signature": null,
+    "user": null,
+    "hostname": null,
+    "summary": "rf detection for flow f-000025; rules=[]; RF score=0.9520."
+  },
+  {
+    "message_id": "alert-a4c0d6236a75",
+    "message_type": "Alert",
+    "schema_version": "1.0",
+    "created_at": "2026-11-24T23:28:57Z",
+    "producer": "detection_agent",
+    "evidence_refs": [
+      "flow:f-000021",
+      "rule:R-MANY-PORTS-5MIN"
+    ],
+    "network": "fixture-net",
+    "detector": "hybrid",
+    "first_seen": "2026-01-10T08:00:00.000Z",
+    "last_seen": "2026-01-10T08:00:00.000Z",
+    "src_ip": "203.0.113.66",
+    "dst_ip": "10.0.1.20",
+    "src_port": 42374,
+    "dst_port": 22,
+    "protocol": 6,
+    "rf_score": 0.872,
+    "rule_hits": [
+      "R-MANY-PORTS-5MIN"
+    ],
+    "ids_source": null,
+    "signature": null,
+    "user": null,
+    "hostname": null,
+    "summary": "hybrid detection for flow f-000021; rules=['R-MANY-PORTS-5MIN']; RF score=0.8720."
+  }
+]
