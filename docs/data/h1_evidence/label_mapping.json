@@ -1,0 +1,112 @@
+{
+  "source_file": "label_info.txt",
+  "source_md5": "e32c0e08d15725999df0c6a0c02aff47",
+  "source_record": {
+    "record_id": "13168643",
+    "doi": "10.5281/zenodo.13168643",
+    "title": "AIT Netflow Data Set",
+    "publication_date": "2024-08-02",
+    "api_url": "https://zenodo.org/api/records/13168643",
+    "retrieved_utc": "2026-11-25T20:25:16+00:00"
+  },
+  "encoding": {
+    "Normal": 0,
+    "Suspicious": 1
+  },
+  "rules": [
+    "Mapping is protocol-aware: TCP CSVs use the TCP sections, UDP CSVs use the UDP sections.",
+    "Matching is exact (case- and whitespace-sensitive) against label_info.txt lines.",
+    "Benign labels -> 0 (Normal); malicious labels -> 1 (Suspicious).",
+    "Any other value is UNMAPPED and is never treated as benign."
+  ],
+  "label_info_parse_problems": [],
+  "TCP": {
+    "benign_0": [
+      "DNS",
+      "HTTP",
+      "HTTP(S) DMZ",
+      "HTTP(S) intra",
+      "HTTPS",
+      "SSH",
+      "benign_share",
+      "broken flow - benign",
+      "browsing/update",
+      "mail",
+      "monitoring",
+      "proxy",
+      "update/command on unassigned port"
+    ],
+    "malicious_1": [
+      "check_cpuinfo",
+      "check_date",
+      "check_df",
+      "check_id",
+      "check_last",
+      "check_meminfo",
+      "check_netstat_l",
+      "check_netstat_nat",
+      "check_netstat_t",
+      "check_network_config",
+      "check_ps_a",
+      "check_pwd",
+      "check_release",
+      "check_uname_a",
+      "check_uname_r",
+      "check_uptime",
+      "check_user_id",
+      "check_who",
+      "check_whoami",
+      "check_wp_config",
+      "clear",
+      "dirb_scan",
+      "dns_brute_force_start",
+      "dump_wp_users",
+      "host_discover_dmz",
+      "host_discover_local",
+      "list_home",
+      "list_l",
+      "list_web_dir",
+      "list_www",
+      "online_cracking",
+      "read_group",
+      "read_passwd",
+      "read_profile",
+      "read_resolv",
+      "service_scan",
+      "upload_rce_shell",
+      "vpn_connect",
+      "wpscan"
+    ]
+  },
+  "UDP": {
+    "benign_0": [
+      "GoogleDNS",
+      "NTP",
+      "NetBIOS",
+      "OpenVPN",
+      "QUIC",
+      "STUN VoIP",
+      "benign DNS",
+      "benign DNS - attacker requesting updates",
+      "bootp",
+      "mDNS",
+      "mDNSv6",
+      "systemd-resolver (local)"
+    ],
+    "malicious_1": [
+      "data exfiltration"
+    ]
+  },
+  "observed_in_csvs": {
+    "TCP": {
+      "unmapped_labels": {
+        "": 942
+      },
+      "official_labels_never_observed": []
+    },
+    "UDP": {
+      "unmapped_labels": {},
+      "official_labels_never_observed": []
+    }
+  }
+}
