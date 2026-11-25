@@ -7,3 +7,5 @@ models/*.joblib
 data/processed/
 out/
 .refact/
+.venv/
+.ipynb_checkpoints/
