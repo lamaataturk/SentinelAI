@@ -1,0 +1,16 @@
+# L-6 dashboard settings. Local-only prototype.
+
+[server]
+address = "127.0.0.1"   # only this computer can open the dashboard
+headless = true
+
+[browser]
+gatherUsageStats = false  # do not send usage data to Streamlit
+
+[theme]
+base = "dark"
+primaryColor = "#3B82F6"
+backgroundColor = "#0B1220"
+secondaryBackgroundColor = "#111A2E"
+textColor = "#E2E8F0"
+font = "sans serif"

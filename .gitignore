@@ -7,3 +7,8 @@ models/*.joblib
 data/processed/
 out/
 .refact/
+
+# L-6 platform: generated at run time, never committed
+reports/
+data/platform/
+.streamlit/secrets.toml
