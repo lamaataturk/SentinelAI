@@ -4,6 +4,9 @@
 address = "127.0.0.1"   # only this computer can open the dashboard
 headless = true
 
+[client]
+toolbarMode = "viewer"     # hide developer/deploy menu entries
+
 [browser]
 gatherUsageStats = false  # do not send usage data to Streamlit
 
