@@ -1,6 +1,6 @@
 # SentinelAI O-1 knowledge base
 
-The tracker’s Tasks row 26 calls for a sourced ATT&CK subset and a hand-written Kill Chain table in the repository. The Investigation Agent spec identifies T1059 for the tracker’s “command execution” entry and lists the other four IDs. Tasks row 28 requires O-3 to trace every label to supporting evidence and its mapping rule.
+The tracker’s Tasks row 26 calls for a sourced ATT&CK subset and a hand-written Kill Chain table in the repository. The Investigation Agent spec identifies T1059 for the tracker’s “command execution” entry and lists the other IDs, including T1548.003 for privilege escalation. Tasks row 28 requires O-3 to trace every label to supporting evidence and its mapping rule.
 
 ## Sources verified 24 November 2026
 
