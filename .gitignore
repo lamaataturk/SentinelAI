@@ -6,3 +6,4 @@ data/raw/
 models/*.joblib
 data/processed/
 out/
+.refact/
