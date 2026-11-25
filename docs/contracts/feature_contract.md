@@ -47,18 +47,25 @@ The team decided on 23 Nov 2026 that IP addresses stay in the data. That decisio
 1. **In the data and messages:** IPs are always present. Investigation links alerts by host, and the reports name the hosts involved.
 2. **As model inputs:** `USE_IP_AS_MODEL_INPUT = True` for now. Slides 10, 11 and 17 currently say IPs are *not* used as features, because each AIT network has its own addresses. Before the presentation, either update those slides, or run M-4 both ways (flag on/off) and report both. The split by network will show whether the model learned addresses instead of behaviour.
 
-## Still to confirm (H-1)
+## AIT Netflow → contract mapping (checked in H-1)
 
-- How each AIT Netflow column maps to the names above. Fill in the table below once the CSVs are opened.
+AIT gives 3 Tstat files per network. The code is in `sentinelai/data/features.py`.
 
-| Our column | AIT column | Checked by |
+| Our column | AIT column(s) | Notes |
 |---|---|---|
-| `start_time` | _to confirm_ | |
-| `src_ip` | _to confirm_ | |
-| `dst_ip` | _to confirm_ | |
-| `bytes` | _to confirm_ | |
-| `packets` | _to confirm_ | |
-| … | | |
+| `flow_id` | none | `f-<network>-<file>-<row>`, e.g. `f-fox-tcp_complete-0000123` (row = 0-based data row in that CSV) |
+| `start_time` | TCP `first`; UDP `min(c_first_abs, s_first_abs)` | ms since epoch → ISO 8601 UTC |
+| `end_time` | TCP `last`; UDP `max(c_first_abs + c_durat, s_first_abs + s_durat)` | UDP `c_durat`/`s_durat` are in **seconds** in Tstat |
+| `src_ip`, `dst_ip` | `c_ip`, `s_ip` | client = the side that sent the first packet |
+| `src_port`, `dst_port` | `c_port`, `s_port` | |
+| `duration_s` | `end_time − start_time` | equals TCP `durat` / 1000 |
+| `bytes` | `c_bytes_all + s_bytes_all` | both directions |
+| `packets` | `c_pkts_all + s_pkts_all` | both directions |
+| `protocol` | file name | `tcp_complete.csv`, `tcp_nocomplete.csv` → 6; `udp_complete.csv` → 17 |
+| `label_raw` | `label` | exact string |
+| `label` | `label` + `label_info.txt` | rule in `docs/data/H3_labeling_rule.md`; rows with an empty/unknown label are left out |
+
+Checked by: Habiba (H-1, 24 Nov 2026).
 
 ## Changing this contract
 

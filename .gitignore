@@ -7,6 +7,8 @@ models/*.joblib
 data/processed/
 out/
 .refact/
+.venv/
+.ipynb_checkpoints/
 
 # L-6 platform: generated at run time, never committed
 reports/

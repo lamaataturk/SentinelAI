@@ -40,6 +40,25 @@ python -m pytest
 
 ---
 
+## Shared project commands (ALL-1 to ALL-5, data pipeline)
+
+```
+python scripts/make_fixtures.py      # rebuild the example data
+python scripts/check_contracts.py    # check data and messages against the contracts
+python scripts/build_features.py --data-dir data/raw/ait --networks fox   # H-5: AIT zips -> data/processed/
+```
+
+| Task | Where |
+|---|---|
+| ALL-1 Contracts | `sentinelai/contracts/features.py`, `sentinelai/contracts/messages.py`, `docs/contracts/` |
+| ALL-2 Fixtures | `fixtures/` (see `fixtures/README.md`), built by `scripts/make_fixtures.py` |
+| ALL-3 Integration | `scripts/check_contracts.py`, `docs/integration_checklist.md` |
+| ALL-4 Specs | `docs/specs/` (one per person) |
+| ALL-5 Demo | `docs/demo_runbook.md` |
+| Data pipeline (Habiba) | `sentinelai/data/`, `scripts/build_features.py`, `docs/data/` |
+
+---
+
 ## Architecture
 
 ```
@@ -230,7 +249,7 @@ Still needed for full integration (outside L-6):
 
 ## Testing
 
-`python -m pytest` runs every test (226 at the time of writing):
+`python -m pytest` runs every test (265 at the time of writing):
 
 | File | Tests | Covers |
 |---|---|---|
@@ -243,7 +262,7 @@ Still needed for full integration (outside L-6):
 | `test_platform_reviews.py` | 20 | L-6 reviews: approve, reject, persistence, history, duplicates, invalid input, outdated versions |
 | `test_platform_demo.py` | 12 | L-6 demo initialisation, no duplicates, demo/live separation, configuration |
 | `test_platform_integration.py` | 11 | Orchestrator + real Response/Reporting agents → API; every dashboard page via Streamlit AppTest against a running API |
-| others | 77 | Investigation, frameworks and Response Agent (teammates) |
+| others | 116 | Data pipeline, investigation, frameworks and Response Agent (teammates) |
 
 ## Folders
 
