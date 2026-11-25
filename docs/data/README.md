@@ -8,7 +8,7 @@ Run everything from the repo root. Data is never committed: `data/raw/` and `dat
 
 | File | Task | What it is |
 |---|---|---|
-| [H1_AIT_verification_report.md](H1_AIT_verification_report.md) | H-1 | AIT Netflow check: checksums, columns, labels, attack counts per network. Decision: **GO with conditions**. Printed copy from the notebook; 3 column-name lists shortened (see note at the top). |
+| [H1_AIT_verification_report.md](H1_AIT_verification_report.md) | H-1 | AIT Netflow check: checksums, columns, labels, attack counts per network. Decision: **GO with conditions**. Full generated report; its evidence files are in [h1_evidence/](h1_evidence/). |
 | [H2_IDS2018_backup_report.md](H2_IDS2018_backup_report.md) | H-2 | CSE-CIC-IDS2018 backup check: size, format, labels, how to switch. Decision: **suitable with conditions**. Exact copy of the generated report. |
 | [H3_labeling_rule.md](H3_labeling_rule.md) | H-3 | The labeling rule (AIT label → 0 normal / 1 suspicious), for sign-off. |
 
@@ -40,4 +40,10 @@ The H-1/H-2 scripts are copied exactly from the Colab notebook. Only the default
 | [docs/specs/1_data_pipeline.md](../specs/1_data_pipeline.md) | Data pipeline spec, with flow and attack counts per network. |
 | [notebooks/habiba_data_pipeline_h1_h5.ipynb](../../notebooks/habiba_data_pipeline_h1_h5.ipynb) | The Colab notebook where H-1 to H-5 were done. Its H-3 to H-5 cells are the first draft; the team version is `sentinelai/data/` + `scripts/build_features.py`. |
 
-**Evidence files** (the CSV/JSON files behind the H-1 and H-2 reports) are not in the repo yet, because the H-1/H-2 output zips weren't available. Running the scripts above regenerates them in `data/processed/h1_outputs/` and `data/processed/h2_outputs/`.
+## Evidence files
+
+| Folder | What it is |
+|---|---|
+| [h1_evidence/](h1_evidence/) | The CSV/JSON files behind the H-1 report, from the run on 2026-11-25: `archive_checksums.csv`, `csv_file_quality_report.csv`, `label_counts_by_file.csv`, `ait_network_attack_counts.csv`, `label_mapping.json`, `run_manifest.json`. `scripts/h1_verify_ait.py` regenerates them in `data/processed/h1_outputs/`. |
+
+The H-2 evidence files are not in the repo yet; `scripts/h2_check_ids2018.py` regenerates them in `data/processed/h2_outputs/`.

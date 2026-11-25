@@ -1,0 +1,424 @@
+network,file,protocol,original_label,official_category,binary_label,flow_count
+fox,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,64434
+fox,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,34918
+fox,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,27876
+fox,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,23074
+fox,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,18427
+fox,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,8256
+fox,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,2942
+fox,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,2371
+fox,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,944
+fox,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,606
+fox,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,262
+fox,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,136
+fox,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,128
+fox,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,60
+fox,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,30
+fox,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,19
+fox,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,7
+fox,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+fox,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_user_id,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_netstat_t,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,read_resolv,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_network_config,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_ps_a,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_release,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,read_group,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,read_passwd,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_date,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,read_profile,malicious (label_info.txt),1,2
+fox,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1
+fox,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,32758
+fox,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,13639
+fox,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1191
+fox,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,692
+fox,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,12
+fox,tcp_nocomplete.csv,TCP,dirb_scan,malicious (label_info.txt),1,3
+fox,tcp_nocomplete.csv,TCP,online_cracking,malicious (label_info.txt),1,1
+fox,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,79043
+fox,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,14668
+fox,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,10084
+fox,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,3918
+fox,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,3607
+fox,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,2992
+fox,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,2940
+fox,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,1334
+fox,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,366
+fox,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,77
+fox,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,55
+fox,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,7
+harrison,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,66164
+harrison,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,61948
+harrison,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,37794
+harrison,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,10810
+harrison,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,8352
+harrison,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,7832
+harrison,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,3946
+harrison,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,3061
+harrison,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,2206
+harrison,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,733
+harrison,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,604
+harrison,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,204
+harrison,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,148
+harrison,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,139
+harrison,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,136
+harrison,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,18
+harrison,tcp_complete.csv,TCP,vpn_connect,malicious (label_info.txt),1,10
+harrison,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,4
+harrison,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+harrison,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,list_www,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,check_who,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,read_passwd,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,clear,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,check_last,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,read_group,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,check_id,malicious (label_info.txt),1,2
+harrison,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1
+harrison,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,65532
+harrison,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,1170
+harrison,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,433
+harrison,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,312
+harrison,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,10
+harrison,tcp_nocomplete.csv,TCP,online_cracking,malicious (label_info.txt),1,5
+harrison,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,117445
+harrison,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,23457
+harrison,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,9538
+harrison,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,4956
+harrison,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,3735
+harrison,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,2645
+harrison,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,1962
+harrison,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,1512
+harrison,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,378
+harrison,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,360
+harrison,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,65
+harrison,udp_complete.csv,UDP,GoogleDNS,benign (label_info.txt),0,6
+harrison,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,4
+russellmitchell,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,48468
+russellmitchell,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,26261
+russellmitchell,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,25822
+russellmitchell,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,12622
+russellmitchell,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,6208
+russellmitchell,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,1112
+russellmitchell,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,910
+russellmitchell,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,785
+russellmitchell,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,484
+russellmitchell,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,375
+russellmitchell,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,90
+russellmitchell,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,76
+russellmitchell,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,24
+russellmitchell,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,14
+russellmitchell,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,11
+russellmitchell,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,5
+russellmitchell,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,4
+russellmitchell,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+russellmitchell,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_whoami,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_uname_r,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,read_profile,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_who,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_meminfo,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_uname_a,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_user_id,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_df,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_netstat_nat,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_id,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,read_resolv,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_netstat_t,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,list_home,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_last,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_date,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,list_www,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_netstat_l,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,clear,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_ps_a,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,read_passwd,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_release,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_cpuinfo,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,read_group,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_uptime,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,check_network_config,malicious (label_info.txt),1,2
+russellmitchell,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1
+russellmitchell,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,131064
+russellmitchell,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,22737
+russellmitchell,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,813
+russellmitchell,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,256
+russellmitchell,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,7
+russellmitchell,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,69211
+russellmitchell,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,15778
+russellmitchell,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,6213
+russellmitchell,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,3508
+russellmitchell,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,1577
+russellmitchell,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,1111
+russellmitchell,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,850
+russellmitchell,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,717
+russellmitchell,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,344
+russellmitchell,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,137
+russellmitchell,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,44
+russellmitchell,udp_complete.csv,UDP,GoogleDNS,benign (label_info.txt),0,5
+santos,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,84132
+santos,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,38200
+santos,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,29515
+santos,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,15877
+santos,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,3940
+santos,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,2960
+santos,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,2189
+santos,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,692
+santos,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,477
+santos,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,225
+santos,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,161
+santos,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,104
+santos,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,90
+santos,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,84
+santos,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,14
+santos,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,13
+santos,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,9
+santos,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+santos,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,list_www,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_user_id,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_id,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_netstat_nat,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_whoami,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_date,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_meminfo,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_netstat_l,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_who,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_pwd,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,clear,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_network_config,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,list_l,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_uname_r,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_ps_a,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,read_resolv,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_last,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_uptime,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,read_passwd,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_release,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_netstat_t,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_df,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_uname_a,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,list_home,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,read_group,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+santos,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+santos,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,3876
+santos,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,998
+santos,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,578
+santos,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,312
+santos,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,11
+santos,tcp_nocomplete.csv,TCP,online_cracking,malicious (label_info.txt),1,3
+santos,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,70915
+santos,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,12848
+santos,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,7122
+santos,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,3301
+santos,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,2994
+santos,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,2984
+santos,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,2491
+santos,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,802
+santos,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,355
+santos,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,159
+santos,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,51
+santos,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,3
+shaw,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,273059
+shaw,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,5181
+shaw,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,2070
+shaw,tcp_complete.csv,TCP,,unmapped: not in label_info.txt,,942
+shaw,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,90
+shaw,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,78
+shaw,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,30
+shaw,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,6
+shaw,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,4
+shaw,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+shaw,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,read_profile,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,check_netstat_nat,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,check_uptime,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+shaw,tcp_complete.csv,TCP,list_l,malicious (label_info.txt),1,2
+shaw,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,1004
+shaw,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,689
+shaw,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,432
+shaw,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,393
+shaw,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,12
+shaw,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,80423
+shaw,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,60898
+shaw,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,12331
+shaw,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,5240
+shaw,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,3825
+shaw,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,2812
+shaw,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,1821
+shaw,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,1545
+shaw,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,347
+shaw,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,216
+shaw,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,68
+shaw,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,7
+wardbeck,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,94926
+wardbeck,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,66154
+wardbeck,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,37687
+wardbeck,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,17526
+wardbeck,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,15581
+wardbeck,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,8024
+wardbeck,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,3390
+wardbeck,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,1874
+wardbeck,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,675
+wardbeck,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,615
+wardbeck,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,192
+wardbeck,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,90
+wardbeck,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,44
+wardbeck,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,23
+wardbeck,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,21
+wardbeck,tcp_complete.csv,TCP,check_user_id,malicious (label_info.txt),1,10
+wardbeck,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,6
+wardbeck,tcp_complete.csv,TCP,check_release,malicious (label_info.txt),1,6
+wardbeck,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+wardbeck,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_uname_r,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_date,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,read_profile,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_netstat_nat,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_pwd,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,read_resolv,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,list_www,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_ps_a,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_whoami,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_who,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_uptime,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_uname_a,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_meminfo,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_netstat_t,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_netstat_l,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_cpuinfo,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_network_config,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_id,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,list_l,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,read_group,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_df,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,clear,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,list_home,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_last,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,vpn_connect,malicious (label_info.txt),1,2
+wardbeck,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1
+wardbeck,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,2025
+wardbeck,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,1042
+wardbeck,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,939
+wardbeck,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,423
+wardbeck,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,8
+wardbeck,tcp_nocomplete.csv,TCP,online_cracking,malicious (label_info.txt),1,1
+wardbeck,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,91748
+wardbeck,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,15076
+wardbeck,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,10932
+wardbeck,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,6292
+wardbeck,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,5274
+wardbeck,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,4368
+wardbeck,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,3349
+wardbeck,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,1209
+wardbeck,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,368
+wardbeck,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,191
+wardbeck,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,64
+wardbeck,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,8
+wheeler,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,107778
+wheeler,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,67838
+wheeler,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,45836
+wheeler,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,24245
+wheeler,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,15306
+wheeler,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,12837
+wheeler,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,4724
+wheeler,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,2314
+wheeler,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,1867
+wheeler,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,587
+wheeler,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,318
+wheeler,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,263
+wheeler,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,50
+wheeler,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,16
+wheeler,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,12
+wheeler,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,12
+wheeler,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,7
+wheeler,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,check_uptime,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,check_last,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,check_pwd,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,check_df,malicious (label_info.txt),1,3
+wheeler,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,2
+wheeler,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+wheeler,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,65491
+wheeler,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,9127
+wheeler,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,3237
+wheeler,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,2028
+wheeler,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,503
+wheeler,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,122186
+wheeler,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,19177
+wheeler,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,10977
+wheeler,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,5427
+wheeler,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,4209
+wheeler,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,4136
+wheeler,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,3600
+wheeler,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,1143
+wheeler,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,460
+wheeler,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,370
+wheeler,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,66
+wheeler,udp_complete.csv,UDP,GoogleDNS,benign (label_info.txt),0,24
+wheeler,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,10
+wilson,tcp_complete.csv,TCP,proxy,benign (label_info.txt),0,180799
+wilson,tcp_complete.csv,TCP,HTTPS,benign (label_info.txt),0,88281
+wilson,tcp_complete.csv,TCP,browsing/update,benign (label_info.txt),0,56403
+wilson,tcp_complete.csv,TCP,HTTP(S) DMZ,benign (label_info.txt),0,55511
+wilson,tcp_complete.csv,TCP,dirb_scan,malicious (label_info.txt),1,8863
+wilson,tcp_complete.csv,TCP,benign_share,benign (label_info.txt),0,8696
+wilson,tcp_complete.csv,TCP,mail,benign (label_info.txt),0,7194
+wilson,tcp_complete.csv,TCP,HTTP(S) intra,benign (label_info.txt),0,6786
+wilson,tcp_complete.csv,TCP,HTTP,benign (label_info.txt),0,3010
+wilson,tcp_complete.csv,TCP,online_cracking,malicious (label_info.txt),1,729
+wilson,tcp_complete.csv,TCP,monitoring,benign (label_info.txt),0,727
+wilson,tcp_complete.csv,TCP,service_scan,malicious (label_info.txt),1,340
+wilson,tcp_complete.csv,TCP,wpscan,malicious (label_info.txt),1,146
+wilson,tcp_complete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,58
+wilson,tcp_complete.csv,TCP,DNS,benign (label_info.txt),0,46
+wilson,tcp_complete.csv,TCP,SSH,benign (label_info.txt),0,42
+wilson,tcp_complete.csv,TCP,host_discover_local,malicious (label_info.txt),1,14
+wilson,tcp_complete.csv,TCP,upload_rce_shell,malicious (label_info.txt),1,12
+wilson,tcp_complete.csv,TCP,vpn_connect,malicious (label_info.txt),1,4
+wilson,tcp_complete.csv,TCP,update/command on unassigned port,benign (label_info.txt),0,2
+wilson,tcp_complete.csv,TCP,list_web_dir,malicious (label_info.txt),1,2
+wilson,tcp_complete.csv,TCP,check_wp_config,malicious (label_info.txt),1,2
+wilson,tcp_complete.csv,TCP,check_whoami,malicious (label_info.txt),1,2
+wilson,tcp_complete.csv,TCP,dump_wp_users,malicious (label_info.txt),1,2
+wilson,tcp_complete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1
+wilson,tcp_nocomplete.csv,TCP,host_discover_local,malicious (label_info.txt),1,16366
+wilson,tcp_nocomplete.csv,TCP,service_scan,malicious (label_info.txt),1,11953
+wilson,tcp_nocomplete.csv,TCP,dns_brute_force_start,malicious (label_info.txt),1,1816
+wilson,tcp_nocomplete.csv,TCP,broken flow - benign,benign (label_info.txt),0,723
+wilson,tcp_nocomplete.csv,TCP,online_cracking,malicious (label_info.txt),1,6
+wilson,tcp_nocomplete.csv,TCP,host_discover_dmz,malicious (label_info.txt),1,5
+wilson,udp_complete.csv,UDP,benign DNS,benign (label_info.txt),0,124476
+wilson,udp_complete.csv,UDP,data exfiltration,malicious (label_info.txt),1,21219
+wilson,udp_complete.csv,UDP,NTP,benign (label_info.txt),0,12039
+wilson,udp_complete.csv,UDP,mDNS,benign (label_info.txt),0,5611
+wilson,udp_complete.csv,UDP,NetBIOS,benign (label_info.txt),0,5576
+wilson,udp_complete.csv,UDP,QUIC,benign (label_info.txt),0,5547
+wilson,udp_complete.csv,UDP,mDNSv6,benign (label_info.txt),0,4263
+wilson,udp_complete.csv,UDP,bootp,benign (label_info.txt),0,1287
+wilson,udp_complete.csv,UDP,OpenVPN,benign (label_info.txt),0,560
+wilson,udp_complete.csv,UDP,systemd-resolver (local),benign (label_info.txt),0,362
+wilson,udp_complete.csv,UDP,benign DNS - attacker requesting updates,benign (label_info.txt),0,58
+wilson,udp_complete.csv,UDP,STUN VoIP,benign (label_info.txt),0,14
