@@ -11,6 +11,11 @@
     "weak": "Plausible behavior with incomplete context, confirmation, or authorization checks.",
     "unmapped": "Insufficient evidence for a candidate. Use empty candidate lists when no hypothesis is justified."
   },
+  "stage_support_policy": {
+    "strong": "Reviewed evidence specific to the stage, separate from the technique evidence and tied to the same alert.",
+    "weak": "Reviewed stage evidence with incomplete corroboration, or a second, independent alert type in the incident that supports the same technique.",
+    "unmapped": "No evidence for the stage beyond the technique evidence. The stage hypothesis is omitted."
+  },
   "rules": [
     {
       "mapping_rule_id": "O1-T1595",

@@ -48,6 +48,8 @@ class KnowledgeBaseTests(unittest.TestCase):
         self.assertEqual(self.mapping["message_schema_version"], SCHEMA_VERSION)
         self.assertCountEqual(self.mapping["support_levels"], SUPPORT_LEVELS)
         self.assertEqual(set(self.mapping["support_policy"]), SUPPORT_LEVELS)
+        self.assertEqual(set(self.mapping["stage_support_policy"]), SUPPORT_LEVELS)
+        self.assertTrue(all(self.mapping["stage_support_policy"].values()))
         for data in (self.techniques, self.stages, self.mapping):
             self.assertEqual(data["schema_version"], "1.0")
         rules = self.mapping["rules"]
