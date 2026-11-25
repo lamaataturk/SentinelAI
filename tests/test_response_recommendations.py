@@ -70,6 +70,17 @@ class ResponseRecommendationTests(unittest.TestCase):
         self.assertIs(advice["requires_human_approval"], True)
         self.assertIn(f"alert:{incident['alert_ids'][0]}", advice["reason"])
 
+    def test_reviewed_logs_are_cited_before_alerts_and_flows(self):
+        self.incident["candidate_techniques"] = [candidate(
+            "T1190", "strong", "flow:f-000001", "alert:alert-0004", "alert:alert-0003",
+            "alert:alert-0002", "raw_log:reviewed-observation",
+        )]
+        advice, = recommendations_for(self.incident)
+        self.assertIn(
+            "Evidence includes raw_log:reviewed-observation, alert:alert-0002, alert:alert-0003.",
+            advice["reason"],
+        )
+
     def test_unmapped_unknown_and_unsubstantiated_candidates_produce_no_advice(self):
         self.incident["candidate_techniques"] = [
             candidate("T1595", "unmapped", "alert:alert-0001"),

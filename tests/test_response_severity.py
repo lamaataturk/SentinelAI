@@ -121,6 +121,21 @@ class ResponseSeverityTests(unittest.TestCase):
         )
         self.assert_policy(self.attack, "Medium", "SEV-STRONG-EVIDENCE")
 
+    def test_strong_evidence_reason_names_the_strong_findings(self):
+        decision = self.assert_policy(self.updates[0], "Medium", "SEV-STRONG-EVIDENCE")
+        self.assertTrue(decision.reasons[0].startswith("Strong evidence supports T1595 and Reconnaissance."))
+
+        self.restrict_stages("exploitation", "installation")
+        self.attack["candidate_techniques"] = [
+            {"technique_id": "T1190", "name": "Exploit Public-Facing Application",
+             "support": "strong", "evidence_refs": ["alert:alert-0004"]},
+            {"technique_id": "T1505.003", "name": "Server Software Component: Web Shell",
+             "support": "weak", "evidence_refs": ["alert:alert-0005"]},
+        ]
+        decision = self.assert_policy(self.attack, "Medium", "SEV-STRONG-EVIDENCE")
+        self.assertTrue(decision.reasons[0].startswith("Strong evidence supports T1190 and Exploitation."))
+        self.assertNotIn("T1505.003", decision.reasons[0])
+
     def test_only_observational_refs_count_as_evidence(self):
         self.restrict_stages("reconnaissance", "exploitation", "actions_on_objectives")
         for stage in self.attack["stage_hypotheses"]:

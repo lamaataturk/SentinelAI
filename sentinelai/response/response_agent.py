@@ -47,6 +47,14 @@ def _supported_findings(findings, alert_ids):
     ]
 
 
+def _strong_findings(techniques, stages) -> str:
+    """Name the strongly supported techniques and stages, in a stable order."""
+    names = sorted({item["technique_id"] for item, _ in techniques if item["support"] == "strong"})
+    names += [stage.replace("_", " ").title() for stage in KILL_CHAIN_STAGES
+              if any(item["stage"] == stage and item["support"] == "strong" for item, _ in stages)]
+    return " and ".join([", ".join(names[:-1]), names[-1]]) if len(names) > 1 else names[0]
+
+
 def recommendations_for(incident: dict) -> list[dict]:
     """Build analyst advice from the incident's evidence-backed techniques."""
     findings = _supported_findings(incident["candidate_techniques"], set(incident["alert_ids"]))
@@ -155,7 +163,8 @@ def assess_severity(
         reasons.append(f"{len(linked_group[0])} linked stages include strongly supported Actions on Objectives.")
     elif strongest == _SUPPORT["strong"]:
         severity, rule = "Medium", "SEV-STRONG-EVIDENCE"
-        reasons.append("At least one finding has strong evidence. The High and Critical conditions require additional evidence.")
+        reasons.append(f"Strong evidence supports {_strong_findings(techniques, stages)}. "
+                       "The High and Critical conditions require additional evidence.")
     elif linked_group:
         severity, rule = "Medium", "SEV-MULTISTAGE-WEAK"
         reasons.append(f"{len(linked_group[0])} linked stages have weak support.")

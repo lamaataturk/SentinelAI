@@ -40,7 +40,7 @@ For the orchestrator adapter, pass confirmations as `exploitation_confirmations=
 
 ## O-5 defensive recommendation catalogue
 
-Each supported technique in the catalogue can contribute one recommendation. Weak support prompts corroboration. Strong support prompts evidence preservation and a focused review. The reason names the technique and support level and cites up to three supporting references. A repeated technique uses its strongest evidence. Unmapped candidates, unknown technique IDs, and candidates without observational evidence are omitted.
+Each supported technique in the catalogue can contribute one recommendation. Weak support prompts corroboration. Strong support prompts evidence preservation and a focused review. The reason names the technique and support level and cites up to three supporting references, reviewed logs first. A repeated technique uses its strongest evidence. Unmapped candidates, unknown technique IDs, and candidates without observational evidence are omitted.
 
 | Technique | Analyst review | Primary reference |
 |---|---|---|

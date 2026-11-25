@@ -3,6 +3,14 @@
 from dataclasses import dataclass
 
 
+# Reviewed logs are the most specific evidence, then alerts, then flows.
+_REF_PRIORITY = {"raw_log": 0, "alert": 1, "flow": 2}
+
+
+def _cited(refs, limit=3):
+    return sorted(refs, key=lambda ref: (_REF_PRIORITY.get(ref.partition(":")[0], 3), ref))[:limit]
+
+
 @dataclass(frozen=True)
 class TechniqueAdvice:
     weak_action: str
@@ -62,7 +70,7 @@ def build_recommendations(findings):
     for technique_id in sorted(supported, key=lambda key: (supported[key][0] != "strong", key)):
         support, refs = supported[technique_id]
         advice = CATALOGUE[technique_id]
-        cited_refs = ", ".join(sorted(refs)[:3])
+        cited_refs = ", ".join(_cited(refs))
         reason = (
             f"{support.capitalize()} support for {technique_id}. "
             f"{advice.reason} Evidence includes {cited_refs}."
