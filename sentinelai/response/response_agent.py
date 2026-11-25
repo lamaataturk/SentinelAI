@@ -7,6 +7,7 @@ from sqlite3 import IntegrityError
 from uuid import NAMESPACE_URL, uuid5
 
 from sentinelai.contracts.messages import KILL_CHAIN_STAGES, SCHEMA_VERSION, validate_message
+from sentinelai.response.recommendations import build_recommendations
 
 DEMO_ASSET_INVENTORY = {"fixture-net": {"host:wordpress": "high"}}
 _SUPPORT = {"unmapped": 0, "weak": 1, "strong": 2}
@@ -37,6 +38,19 @@ def _evidence(references, alert_ids):
         if item_id and (kind in {"raw_log", "flow"} or (kind == "alert" and item_id in alert_ids)):
             evidence.add(reference)
     return evidence
+
+
+def _supported_findings(findings, alert_ids):
+    return [
+        (item, refs) for item in findings
+        if item["support"] in ("strong", "weak") and (refs := _evidence(item["evidence_refs"], alert_ids))
+    ]
+
+
+def recommendations_for(incident: dict) -> list[dict]:
+    """Build analyst advice from the incident's evidence-backed techniques."""
+    findings = _supported_findings(incident["candidate_techniques"], set(incident["alert_ids"]))
+    return build_recommendations(findings)
 
 
 def _linked_stage_groups(alert_ids, stages, link_reasons):
@@ -100,14 +114,8 @@ def assess_severity(
         raise ValueError("O-4 requires a positive incident version")
 
     alert_ids = set(incident["alert_ids"])
-    techniques = [
-        (item, refs) for item in incident["candidate_techniques"]
-        if item["support"] != "unmapped" and (refs := _evidence(item["evidence_refs"], alert_ids))
-    ]
-    stages = [
-        (item, refs) for item in incident["stage_hypotheses"]
-        if item["support"] != "unmapped" and (refs := _evidence(item["evidence_refs"], alert_ids))
-    ]
+    techniques = _supported_findings(incident["candidate_techniques"], alert_ids)
+    stages = _supported_findings(incident["stage_hypotheses"], alert_ids)
     findings = techniques + stages
     strongest = max((_SUPPORT[item["support"]] for item, _ in findings), default=0)
     reached = [stage for stage in KILL_CHAIN_STAGES if any(item["stage"] == stage for item, _ in stages)]
@@ -222,7 +230,7 @@ class ResponseAgent:
             "severity": decision.severity,
             "policy_rule_id": decision.rule_id,
             "severity_reasons": list(decision.reasons),
-            "recommendations": [],
+            "recommendations": recommendations_for(latest),
             "review_status": "pending",
         }
         try:
