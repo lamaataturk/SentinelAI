@@ -11,6 +11,7 @@ pip install -r requirements.txt
 python scripts/make_fixtures.py      # rebuild the example data
 python scripts/check_contracts.py    # check data and messages against the contracts
 pytest                               # 14 contract tests
+python scripts/build_features.py --data-dir data/raw/ait --networks fox   # H-5: AIT zips -> data/processed/
 ```
 
 ## What's in the repo so far (shared tasks ALL-1 to ALL-5)
