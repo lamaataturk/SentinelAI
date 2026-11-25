@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "message_schema_version": "1.0",
+  "support_levels": [
+    "strong",
+    "weak",
+    "unmapped"
+  ],
+  "support_policy": {
+    "strong": "Specific evidence with corroboration and no equally plausible benign explanation.",
+    "weak": "Plausible behavior with incomplete context, confirmation, or authorization checks.",
+    "unmapped": "Insufficient evidence for a candidate. Use empty candidate lists when no hypothesis is justified."
+  },
+  "rules": [
+    {
+      "mapping_rule_id": "O1-T1595",
+      "technique_id": "T1595",
+      "detection_rule_ids": [
+        "R-MANY-PORTS-5MIN"
+      ],
+      "technique_evidence": {
+        "weak": "A probe pattern across ports or hosts directed at a potential target.",
+        "strong": "Corroborated probing with source and target context consistent with external reconnaissance.",
+        "limitations": "Authorized monitoring, inventory, or testing can produce the same pattern."
+      },
+      "stage_hypotheses": [
+        {
+          "stage": "reconnaissance",
+          "requires": "Probing is consistent with target discovery in this incident."
+        }
+      ]
+    },
+    {
+      "mapping_rule_id": "O1-T1190",
+      "technique_id": "T1190",
+      "detection_rule_ids": [],
+      "technique_evidence": {
+        "weak": "Suspicious activity against a verified public-facing application, with context consistent with attempted exploitation.",
+        "strong": "Application, IDS, or host evidence specific to an exploit attempt and linked to the same request and asset.",
+        "limitations": "Traffic volume or an upload alone is ambiguous. An attempt does not establish successful access."
+      },
+      "stage_hypotheses": [
+        {
+          "stage": "exploitation",
+          "requires": "Independent request or application evidence supports an exploitation hypothesis."
+        }
+      ]
+    },
+    {
+      "mapping_rule_id": "O1-T1505.003",
+      "technique_id": "T1505.003",
+      "detection_rule_ids": [],
+      "technique_evidence": {
+        "weak": "Suspicious web requests with server-side context suggesting an unauthorized web component.",
+        "strong": "A linked server artifact or host telemetry showing an unauthorized web shell present or invoked.",
+        "limitations": "Request size or sequence alone cannot establish web shell activity or installation."
+      },
+      "stage_hypotheses": [
+        {
+          "stage": "installation",
+          "requires": "A linked deployment or persistence artifact supports installation. Observed use alone leaves installation timing uncertain."
+        }
+      ]
+    },
+    {
+      "mapping_rule_id": "O1-T1059",
+      "technique_id": "T1059",
+      "detection_rule_ids": [],
+      "technique_evidence": {
+        "weak": "Linked behavior consistent with interpreter use, such as requests correlated with anomalous process telemetry.",
+        "strong": "Host process or audit evidence identifies interpreter activity tied to the incident and distinguishes it from routine administration.",
+        "limitations": "Repeated short HTTP requests alone cannot establish interpreter execution or a control channel."
+      },
+      "stage_hypotheses": [
+        {
+          "stage": "command_and_control",
+          "requires": "Independent evidence indicates remote tasking or a control channel. Interpreter activity by itself does not establish this stage."
+        }
+      ]
+    },
+    {
+      "mapping_rule_id": "O1-T1048",
+      "technique_id": "T1048",
+      "detection_rule_ids": [
+        "R-DNS-VOLUME-HIGH",
+        "R-DNS-LARGE-QUERY"
+      ],
+      "technique_evidence": {
+        "weak": "Outbound transfer indicators consistent with unauthorized data movement over an alternative channel.",
+        "strong": "Linked content, endpoint, DNS, or egress evidence supports unauthorized data transfer and the alternative-protocol distinction.",
+        "limitations": "DNS volume and size alone cannot establish transferred content, authorization, or separation from command and control."
+      },
+      "stage_hypotheses": [
+        {
+          "stage": "actions_on_objectives",
+          "requires": "Evidence supports suspected data theft as an incident objective."
+        }
+      ]
+    },
+    {
+      "mapping_rule_id": "O1-T1548.003",
+      "technique_id": "T1548.003",
+      "detection_rule_ids": [],
+      "technique_evidence": {
+        "weak": "Host authentication or audit evidence of sudo to root on a host involved in the incident.",
+        "strong": "Linked host evidence that the elevation was not routine administration, such as an unexpected user, a first-time sudo, or elevation following other attack activity on the same host.",
+        "limitations": "Administrators use sudo routinely; elevation alone does not establish abuse."
+      },
+      "stage_hypotheses": []
+    }
+  ]
+}

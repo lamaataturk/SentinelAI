@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "verified_on": "2026-11-24",
+  "source_url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf?Offer=ab_ss_reeng_plt_var1",
+  "source_section": "3.2 Intrusion Kill Chain",
+  "stages": [
+    {
+      "stage": "reconnaissance",
+      "name": "Reconnaissance",
+      "order": 1,
+      "description": "Research and selection of potential targets."
+    },
+    {
+      "stage": "weaponization",
+      "name": "Weaponization",
+      "order": 2,
+      "description": "Preparation of a payload for delivery to a target."
+    },
+    {
+      "stage": "delivery",
+      "name": "Delivery",
+      "order": 3,
+      "description": "Transfer of the payload into the targeted environment."
+    },
+    {
+      "stage": "exploitation",
+      "name": "Exploitation",
+      "order": 4,
+      "description": "Triggering code or taking advantage of a weakness on the target."
+    },
+    {
+      "stage": "installation",
+      "name": "Installation",
+      "order": 5,
+      "description": "Establishing a foothold on a target system."
+    },
+    {
+      "stage": "command_and_control",
+      "name": "Command and Control",
+      "order": 6,
+      "description": "Establishing communications used to control compromised systems."
+    },
+    {
+      "stage": "actions_on_objectives",
+      "name": "Actions on Objectives",
+      "order": 7,
+      "description": "Carrying out the objectives of the intrusion, such as stealing data."
+    }
+  ]
+}
