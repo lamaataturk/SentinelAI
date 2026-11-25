@@ -74,4 +74,4 @@ python -m unittest discover -s tests -p "test_response_*.py" -v
 python scripts/check_contracts.py
 ```
 
-O-6 covers the broader severity-policy test matrix. Every recommendation requires human approval.
+O-6 is covered by `tests/test_response_severity.py`. It checks all seven policy rules, exact repeatability under reordered or duplicated evidence, the evidence and linkage needed for High, and the asset, log, and incident-version checks needed for Critical. The existing integration checks cover assessment persistence, report generation, and human approval for recommendations.
