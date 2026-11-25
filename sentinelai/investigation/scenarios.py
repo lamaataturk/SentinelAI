@@ -15,6 +15,8 @@ from pathlib import Path
 import pandas as pd
 
 ATTACKER = '203.0.113.66'
+# Network context for the mapper: in both demo networks only the attacker is outside.
+EXTERNAL_SOURCES = frozenset({ATTACKER})
 MACHINE_IP = {'webserver': '10.0.1.20', 'inet-firewall': '10.0.1.1', 'mail': '10.0.1.25',
               'inet-dns': '10.0.1.53', 'vpn': '10.0.1.10', 'monitoring': '10.0.1.5',
               'internal_share': '10.0.1.40', 'backup': '10.0.1.30'}

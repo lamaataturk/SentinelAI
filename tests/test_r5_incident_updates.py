@@ -10,7 +10,7 @@ from sentinelai.investigation import knowledge
 from sentinelai.investigation.correlation import CorrelationConfig, investigate
 from sentinelai.investigation.incident_updates import alert_message, incident_updates
 from sentinelai.investigation.knowledge import KIND_TECHNIQUE, O1_RULES, OBSERVATION_RULES
-from sentinelai.investigation.scenarios import EXPECTED, build_scenario_1, build_scenario_2
+from sentinelai.investigation.scenarios import EXPECTED, EXTERNAL_SOURCES, build_scenario_1, build_scenario_2
 
 needs_o1 = pytest.mark.skipif(not O1_RULES, reason="needs Omar's O-1 technique_stage_mapping.json")
 needs_o3 = pytest.mark.skipif(not knowledge.MAPPER_AVAILABLE, reason="needs Omar's O-3 mapper")
@@ -96,7 +96,7 @@ def run_scenario(build):
     alerts_s, truth_s = build()
     name = alerts_s['network'].iloc[0]
     a, g, links, inc = investigate(alerts_s)
-    msgs = incident_updates(a, g, links, inc, name)
+    msgs = incident_updates(a, g, links, inc, name, external_sources=EXTERNAL_SOURCES)
     t = a.merge(truth_s, on='alert_id')
     t['kept'] = ~t['incident_id'].isin(set(inc.loc[inc['routine'], 'incident_id']))
     alert_msgs = [alert_message(r) for r in a[a['alert_id'].isin({i for m in msgs for i in m['alert_ids']})].to_dict('records')]

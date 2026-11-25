@@ -25,7 +25,7 @@ from sentinelai.investigation.ait_ads import read_table  # noqa: E402
 from sentinelai.investigation.correlation import CorrelationConfig, investigate  # noqa: E402
 from sentinelai.investigation.evaluate import evaluate  # noqa: E402
 from sentinelai.investigation.incident_updates import incident_updates  # noqa: E402
-from sentinelai.investigation.scenarios import write_scenarios  # noqa: E402
+from sentinelai.investigation.scenarios import EXTERNAL_SOURCES, write_scenarios  # noqa: E402
 
 TUNE = ["russellmitchell", "santos", "shaw"]
 TEST = ["fox", "harrison", "wardbeck", "wheeler", "wilson"]   # never used for design or tuning
@@ -63,7 +63,7 @@ def main(argv=None):
     if args.scenarios:
         for name, (alerts_s, _truth) in write_scenarios(args.out / "scenarios").items():
             a, g, links, inc = investigate(alerts_s, cfg)
-            msgs = incident_updates(a, g, links, inc, name)
+            msgs = incident_updates(a, g, links, inc, name, external_sources=EXTERNAL_SOURCES)
             write_jsonl(msgs, args.out / f"incident_updates_{name}.jsonl")
             print(f"{name}: {len(msgs)} incidents")
         return
