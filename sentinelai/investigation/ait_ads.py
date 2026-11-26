@@ -98,13 +98,24 @@ def read_table(path: Path) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------ phases
-def load_phases(ait_repo: str | Path) -> pd.DataFrame:
+def load_phases(ait_repo: str | Path, *, allow_code_execution: bool = False) -> pd.DataFrame:
     """Attack-phase start/end times per scenario, read from the authors' attacktimes.py.
 
     Same information as labels.csv on Zenodo. Evaluation only.
     Returns columns: scenario, phase, start, end, is_attack.
+
+    attacktimes.py is Python code, and reading it runs it. Pass
+    allow_code_execution=True only for a checkout of
+    github.com/ait-aecid/alert-data-set that you trust.
     """
-    spec = importlib.util.spec_from_file_location("ait_attacktimes", Path(ait_repo) / "attacktimes.py")
+    path = Path(ait_repo) / "attacktimes.py"
+    if not allow_code_execution:
+        raise PermissionError(
+            f"load_phases runs {path} as Python code. Pass allow_code_execution=True "
+            "only for a trusted checkout of the AIT-ADS repository.")
+    if not path.is_file():
+        raise FileNotFoundError(f"no attacktimes.py in {Path(ait_repo)}")
+    spec = importlib.util.spec_from_file_location("ait_attacktimes", path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     rows = []
