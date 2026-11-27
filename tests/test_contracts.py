@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 
 from sentinelai.contracts.features import (
-    ALL_COLUMNS, add_ip_model_features, model_input_columns, validate_feature_frame,
+    add_ip_model_features, model_input_columns, validate_feature_frame,
 )
 from sentinelai.contracts.messages import validate_bundle, validate_message
 

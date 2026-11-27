@@ -11,6 +11,9 @@ fixture demo to real agent output never needs a code change:
     SENTINELAI_API_URL      address the dashboard uses to reach the API
     SENTINELAI_API_HOST     address the API listens on (default 127.0.0.1)
     SENTINELAI_API_PORT     port the API listens on (default 8000)
+    SENTINELAI_ALLOWED_HOSTS  comma-separated host names the API answers to
+                            (default: 127.0.0.1, localhost and the API host;
+                            "*" turns the check off)
 
 Demo and live data always use different files, so demo fixtures can never be
 mixed into (or overwrite) a database written by the real agents.
@@ -27,6 +30,7 @@ FIXTURES_DIR = ROOT / "fixtures"
 PLATFORM_DATA_DIR = ROOT / "data" / "platform"
 
 MODES = ("demo", "live")
+LOCAL_HOSTS = ("127.0.0.1", "localhost")
 
 _DEFAULTS = {
     "demo": {
@@ -51,6 +55,9 @@ class Settings:
     api_url: str = "http://127.0.0.1:8000"
     api_host: str = "127.0.0.1"
     api_port: int = 8000
+    # Host header values the API accepts. None skips the check (tests and
+    # in-process use); from_env() always sets it.
+    allowed_hosts: tuple[str, ...] | None = None
 
     def __post_init__(self):
         if self.mode not in MODES:
@@ -87,6 +94,12 @@ class Settings:
         overrides["api_host"] = host
         overrides["api_port"] = port
         overrides["api_url"] = env.get("SENTINELAI_API_URL", f"http://127.0.0.1:{port}").rstrip("/")
+        allowed = [name.strip() for name in env.get("SENTINELAI_ALLOWED_HOSTS", "").split(",") if name.strip()]
+        if not allowed:
+            allowed = list(LOCAL_HOSTS)
+            if host not in allowed and host not in ("0.0.0.0", "::"):
+                allowed.append(host)
+        overrides["allowed_hosts"] = tuple(allowed)
         return cls.for_mode(mode, **overrides)
 
 

@@ -20,6 +20,7 @@ from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Path, Query, Request
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
@@ -88,6 +89,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     "Reporting Agent, and human review records. Decisions are advisory only.",
     )
     app.state.service = service
+    if settings.allowed_hosts:
+        # A web page can point its own domain at 127.0.0.1 (DNS rebinding) and send
+        # requests here. Those requests carry the page's host name, so they are refused.
+        app.add_middleware(TrustedHostMiddleware, allowed_hosts=list(settings.allowed_hosts))
 
     # --------------------------------------------------------- error handling
     @app.exception_handler(NotFound)

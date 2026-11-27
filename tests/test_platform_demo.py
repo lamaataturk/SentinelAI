@@ -111,6 +111,19 @@ def test_settings_from_environment(monkeypatch, tmp_path):
         Settings.from_env()
 
 
+def test_allowed_hosts_from_environment(monkeypatch):
+    for name in ("SENTINELAI_MODE", "SENTINELAI_API_HOST", "SENTINELAI_ALLOWED_HOSTS"):
+        monkeypatch.delenv(name, raising=False)
+    assert Settings.from_env().allowed_hosts == ("127.0.0.1", "localhost")
+    monkeypatch.setenv("SENTINELAI_API_HOST", "192.168.1.20")
+    assert Settings.from_env().allowed_hosts == ("127.0.0.1", "localhost", "192.168.1.20")
+    monkeypatch.setenv("SENTINELAI_API_HOST", "0.0.0.0")
+    assert Settings.from_env().allowed_hosts == ("127.0.0.1", "localhost")
+    monkeypatch.setenv("SENTINELAI_ALLOWED_HOSTS", " sentinel.lan , 10.0.0.5 ")
+    assert Settings.from_env().allowed_hosts == ("sentinel.lan", "10.0.0.5")
+    assert Settings.for_mode("demo").allowed_hosts is None
+
+
 def test_flow_ids_loader(tmp_path):
     assert len(load_flow_ids(FIX / "features_sample.csv")) == 32
     assert load_flow_ids(None) is None

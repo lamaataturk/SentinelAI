@@ -314,6 +314,35 @@ def test_validation_reports_broken_evidence(tmp_path):
     assert any("f-does-not-exist" in e for e in v["errors"])
 
 
+def test_api_refuses_requests_for_other_host_names(demo_settings):
+    from dataclasses import replace
+
+    from fastapi.testclient import TestClient
+    from sentinelai.platform.api import create_app
+
+    settings = replace(demo_settings, allowed_hosts=("127.0.0.1", "localhost"))
+    client = TestClient(create_app(settings), base_url="http://127.0.0.1:8000")
+    assert client.get("/api/health").status_code == 200
+    assert client.get("/api/health", headers={"host": "localhost:8000"}).status_code == 200
+    review = {"assessment_id": "assess-0001", "recommendation_index": 0,
+              "incident_version": 2, "decision": "approved"}
+    rebound = client.post("/api/reviews", json=review, headers={"host": "attacker.example:8000"})
+    assert rebound.status_code == 400
+    assert client.get("/api/reviews").json()["total"] == 0
+    assert client.post("/api/reviews", json=review).status_code == 201
+
+
+def test_attack_link_only_shows_https_addresses():
+    from sentinelai.dashboard.views.frameworks import _attack_link
+
+    link = _attack_link("https://attack.mitre.org/techniques/T1595/")
+    assert "href='https://attack.mitre.org/techniques/T1595/'" in link
+    assert "rel='noopener noreferrer'" in link
+    assert _attack_link("javascript:alert(1)") == ""
+    assert _attack_link(None) == ""
+    assert "&#x27;" in _attack_link("https://example.org/'onmouseover='x")
+
+
 def test_unexpected_errors_hide_internals(api, monkeypatch):
     from fastapi.testclient import TestClient
 
