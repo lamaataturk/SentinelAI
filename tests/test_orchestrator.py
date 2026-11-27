@@ -48,7 +48,13 @@ def test_empty_workflow(setup_system):
 
     results = orchestrator.run_once()
 
-    assert all(count == 0 for count in results.values())
+    assert results == {
+        "alerts_processed": 0,
+        "incidents_processed": 0,
+        "assessments_processed": 0,
+        "reports_processed": 0,
+        "errors": [],
+    }
 
 
 def test_alert_triggers_investigation(setup_system):
@@ -102,6 +108,80 @@ def test_no_duplicate_processing(setup_system):
 
     assert results["alerts_processed"] == 0
     assert len(investigation.calls) == 1
+
+def test_missing_agent_leaves_its_messages_for_a_later_run(tmp_path):
+    memory = SharedMemory(tmp_path / "test.db")
+    alert = load_messages("alerts.json")[0]
+    memory.write(alert)
+    orchestrator = Orchestrator(memory, None, MockAgent(), MockAgent())
+
+    results = orchestrator.run_once()
+
+    assert results["alerts_processed"] == 0
+    assert results["errors"] == []
+
+    investigation = MockAgent()
+    orchestrator.investigation_agent = investigation
+
+    assert orchestrator.run_once()["alerts_processed"] == 1
+    assert investigation.calls == [alert["message_id"]]
+
+
+class FailsOnceAgent(MockAgent):
+    def __init__(self, failing_id):
+        super().__init__()
+        self.failing_id = failing_id
+
+    def run(self, message, memory):
+        if message["message_id"] == self.failing_id:
+            self.failing_id = None
+            raise RuntimeError("agent crashed")
+        super().run(message, memory)
+
+
+def test_failing_message_is_reported_and_retried(tmp_path):
+    memory = SharedMemory(tmp_path / "test.db")
+    first, second = load_messages("alerts.json")[:2]
+    memory.write(first)
+    memory.write(second)
+    investigation = FailsOnceAgent(first["message_id"])
+    orchestrator = Orchestrator(memory, investigation, MockAgent(), MockAgent())
+
+    results = orchestrator.run_once()
+
+    assert results["alerts_processed"] == 1
+    assert investigation.calls == [second["message_id"]]
+    assert results["errors"] == [{
+        "message_id": first["message_id"],
+        "message_type": "Alert",
+        "error": "RuntimeError: agent crashed",
+    }]
+
+    retry = orchestrator.run_once()
+
+    assert retry["alerts_processed"] == 1
+    assert retry["errors"] == []
+    assert investigation.calls == [second["message_id"], first["message_id"]]
+
+
+class AlwaysFailsAgent:
+    def run(self, message, memory):
+        raise RuntimeError("agent crashed")
+
+
+def test_many_failures_log_one_traceback(tmp_path, caplog):
+    memory = SharedMemory(tmp_path / "test.db")
+    for alert in load_messages("alerts.json")[:3]:
+        memory.write(alert)
+    orchestrator = Orchestrator(memory, AlwaysFailsAgent(), MockAgent(), MockAgent())
+
+    with caplog.at_level("ERROR", logger="sentinelai.orchestrator"):
+        results = orchestrator.run_once()
+
+    assert len(results["errors"]) == 3
+    assert sum(record.exc_info is not None for record in caplog.records) == 1
+    assert "3 Alert messages failed" in caplog.text
+
 
 def test_existing_report_request_not_duplicated(setup_system):
     memory, orchestrator, _, _, _ = setup_system
@@ -188,6 +268,7 @@ def test_complete_agent_workflow(tmp_path):
         "incidents_processed": 1,
         "assessments_processed": 1,
         "reports_processed": 1,
+        "errors": [],
     }
 
     assert len(memory.read("Alert")) == 1
@@ -199,8 +280,12 @@ def test_complete_agent_workflow(tmp_path):
 
     second_run = orchestrator.run_once()
 
-    assert all(
-        count == 0 for count in second_run.values()
-    )
+    assert second_run == {
+        "alerts_processed": 0,
+        "incidents_processed": 0,
+        "assessments_processed": 0,
+        "reports_processed": 0,
+        "errors": [],
+    }
 
     assert len(reporting.reports) == 1

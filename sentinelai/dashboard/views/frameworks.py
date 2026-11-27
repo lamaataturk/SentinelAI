@@ -18,6 +18,14 @@ LEGEND = (
 )
 
 
+def _attack_link(url) -> str:
+    """Link to the technique's ATT&CK page. Only https addresses are shown."""
+    if not isinstance(url, str) or not url.startswith("https://"):
+        return ""
+    return (f" <a href='{theme.esc(url)}' target='_blank' rel='noopener noreferrer' "
+            "style='font-size:.75rem'>ATT&amp;CK page ↗</a>")
+
+
 def _kill_chain(stages: list[dict]) -> str:
     cells = []
     for s in stages:
@@ -80,8 +88,7 @@ def render() -> None:
         for n, t in enumerate(group):
             with cols[n % 2]:
                 with st.container(border=True):
-                    link = (f" <a href='{theme.esc(t['reference_url'])}' target='_blank' "
-                            f"style='font-size:.75rem'>ATT&amp;CK page ↗</a>" if t.get("reference_url") else "")
+                    link = _attack_link(t.get("reference_url"))
                     stages = ", ".join(s.replace("_", " ").title() for s in t["possible_stages"]) or "none listed"
                     theme.html_block(
                         f"<div class='sx-rec-action'>Possible {theme.esc(t['technique_id'])} · "

@@ -117,7 +117,7 @@ Repository layout, `requirements.txt`, `pytest.ini` (`pythonpath = .`, `testpath
 Messages are never updated or deleted.
 
 ### L-3 Orchestrator: `sentinelai/platform/orchestrator.py`
-A scheduler, not an agent. `run_once()` routes new messages: `Alert` → Investigation, `IncidentUpdate` → Response, `Assessment` → creates one `ReportRequest` per assessment, `ReportRequest` → Reporting. Each agent implements `run(self, message, memory)`. Processed IDs are kept in memory (a restart reprocesses; agents are written to be idempotent).
+A scheduler, not an agent. `run_once()` routes new messages: `Alert` → Investigation, `IncidentUpdate` → Response, `Assessment` → creates one `ReportRequest` per assessment, `ReportRequest` → Reporting. Each agent implements `run(self, message, memory)`. Processed IDs are kept in memory (a restart reprocesses; agents are written to be idempotent). An agent passed as `None` is skipped and its messages wait for a later run. If an agent fails on a message, the error is logged and listed under `errors` in the result, the other messages carry on, and the failed message is retried on the next run.
 
 ### L-4 Reporting Agent: `sentinelai/reporting/reporting_agent.py`
 `ReportingAgent(output_dir, flow_ids=None).run(report_request, memory)` writes `<output_dir>/<request_id>.md`. It refuses to write a report if evidence validation fails or if the assessment does not belong to the latest incident version. Sections: overview, timeline, detection evidence (IPs, RF score, rule hits), possible ATT&CK techniques, possible Kill Chain stages, severity, recommendations (advice only), uncertainty, benign explanations, human review, evidence validation. Every statement cites the message it comes from.
@@ -212,6 +212,7 @@ Unavailable values are shown as "not available" / "not recorded", never as 0. Se
 | `SENTINELAI_FLOWS_CSV` | demo: `fixtures/features_sample.csv`, live: none | Feature CSV for `flow:` reference checks (`none` = do not check) |
 | `SENTINELAI_API_URL` | `http://127.0.0.1:8000` | Where the dashboard finds the API |
 | `SENTINELAI_API_HOST` / `SENTINELAI_API_PORT` | `127.0.0.1` / `8000` | API binding |
+| `SENTINELAI_ALLOWED_HOSTS` | `127.0.0.1,localhost` plus the API host | Host names the API answers to. Other `Host` headers get `400`, which stops a web page from reaching the API through DNS rebinding. `*` turns the check off |
 
 PowerShell example:
 
@@ -249,20 +250,20 @@ Still needed for full integration (outside L-6):
 
 ## Testing
 
-`python -m pytest` runs every test (265 at the time of writing):
+`python -m pytest` runs every test:
 
 | File | Tests | Covers |
 |---|---|---|
 | `test_contracts.py` | 14 | Message and feature contracts |
 | `test_shared_memory.py` | 7 | L-2 |
-| `test_orchestrator.py` | 7 | L-3 |
+| `test_orchestrator.py` | 10 | L-3, including skipped agents and failed messages |
 | `test_reporting_agent.py` | 13 | L-4 |
 | `test_traceability.py` | 7 | L-5 |
-| `test_platform_api.py` | 58 | L-6 API: health, stats, filters, incidents, versions, errors, reports, path safety, validation |
+| `test_platform_api.py` | 60 | L-6 API: health, stats, filters, incidents, versions, errors, reports, path safety, validation, Host check, ATT&CK links |
 | `test_platform_reviews.py` | 20 | L-6 reviews: approve, reject, persistence, history, duplicates, invalid input, outdated versions |
-| `test_platform_demo.py` | 12 | L-6 demo initialisation, no duplicates, demo/live separation, configuration |
+| `test_platform_demo.py` | 13 | L-6 demo initialisation, no duplicates, demo/live separation, configuration |
 | `test_platform_integration.py` | 11 | Orchestrator + real Response/Reporting agents → API; every dashboard page via Streamlit AppTest against a running API |
-| others | 116 | Data pipeline, investigation, frameworks and Response Agent (teammates) |
+| others | rest | Data pipeline, detection, investigation, frameworks and Response Agent (teammates) |
 
 ## Folders
 

@@ -23,10 +23,10 @@ Report sections: timeline · evidence (with IPs) · ML scores and rule hits · p
 - L-6 adds two tables to the same file, never touching `messages`: `human_reviews` (append-only review log) and `platform_meta` (data source: `fixtures` or `agents`).
 
 ## Orchestrator
-Scheduler only, not an agent: new Alert → Investigation; new IncidentUpdate → Response; new Assessment → ReportRequest; new ReportRequest → Reporting. Triggered by calling `run_once()` (no background polling); processed IDs are kept in memory.
+Scheduler only, not an agent: new Alert → Investigation; new IncidentUpdate → Response; new Assessment → ReportRequest; new ReportRequest → Reporting. Triggered by calling `run_once()` (no background polling); processed IDs are kept in memory. An agent passed as `None` is skipped and its messages wait. A message whose agent fails is logged, listed under `errors` in the result and retried on the next run; the other messages carry on.
 
 ## API and dashboard
-- FastAPI (`sentinelai/platform/api.py`, bound to 127.0.0.1): `/api/health`, `/api/system`, `/api/stats`, `/api/alerts[/{id}]`, `/api/incidents[/{id}[/versions|/alerts|/timeline|/frameworks|/assessments]]`, `/api/assessments[/{id}]`, `/api/reviews` (GET, POST), `/api/reviews/pending`, `/api/reports` (GET, POST), `/api/reports/{id}[/download]`, `/api/validation`. Full table in the README.
+- FastAPI (`sentinelai/platform/api.py`, bound to 127.0.0.1): `/api/health`, `/api/system`, `/api/stats`, `/api/alerts[/{id}]`, `/api/incidents[/{id}[/versions|/alerts|/timeline|/frameworks|/assessments]]`, `/api/assessments[/{id}]`, `/api/reviews` (GET, POST), `/api/reviews/pending`, `/api/reports` (GET, POST), `/api/reports/{id}[/download]`, `/api/validation`. Full table in the README. Requests whose `Host` header is not in `SENTINELAI_ALLOWED_HOSTS` (default `127.0.0.1`, `localhost` and the API host) get `400`, which blocks DNS rebinding from a web page.
 - Streamlit (`sentinelai/dashboard/`, talks to the API only): Overview, Alerts, Incident Investigation, ATT&CK & Kill Chain, Incident Reports, Human Review.
 - Approve/reject is saved in shared memory's SQLite file, in a separate `human_reviews` table, so Assessment messages stay immutable. Decisions are only accepted for the assessment of an incident's latest version (409 otherwise) and execute nothing.
 - Demo mode: `scripts/init_demo.py` loads the fixtures into `data/platform/demo/` (idempotent) and generates reports with the Reporting Agent. Live mode reads `data/platform/live/`.
